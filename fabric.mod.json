@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "paytracker",
+  "version": "1.0.0",
+  "name": "Ocean Pay Tracker",
+  "description": "Tracks payments you send and receive, shows net worth, and has a timer that finds the biggest payment.",
+  "authors": ["You"],
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.paytracker.PayTrackerClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.18.0",
+    "minecraft": "1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
