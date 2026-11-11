@@ -4,18 +4,19 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.text.Text;
 
 /** A button drawn in the ocean theme. Click handling is vanilla. */
 public class OceanButton extends ButtonWidget {
     public boolean selected = false;
 
     public OceanButton(int x, int y, int w, int h, String label, ButtonWidget.PressAction onPress) {
-        super(x, y, w, h, Text.literal(label), onPress, DEFAULT_NARRATION_SUPPLIER);
+        // NOTE: ButtonWidget has an inner class called Text, so the real Text class is written out in full here.
+        super(x, y, w, h, net.minecraft.text.Text.literal(label), onPress, DEFAULT_NARRATION_SUPPLIER);
     }
 
+    // The vanilla button background is drawn first; we paint over all of it with the ocean look.
     @Override
-    public void renderWidget(DrawContext ctx, int mouseX, int mouseY, float delta) {
+    public void drawIcon(DrawContext ctx, int mouseX, int mouseY, float delta) {
         int bg = selected ? Ocean.BTN_ON : (isHovered() ? Ocean.BTN_HOVER : Ocean.BTN);
         int x = getX(), y = getY(), w = getWidth(), h = getHeight();
         ctx.fill(x, y, x + w, y + h, selected ? Ocean.ACCENT : Ocean.BORDER_DIM);
